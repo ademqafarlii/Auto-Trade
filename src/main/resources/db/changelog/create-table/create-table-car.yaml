@@ -1,0 +1,74 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2024-09-08-03
+      author: adem
+      changes:
+        - createTable:
+            tableName: car
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: brand
+                  type: varchar
+              - column:
+                  name: model
+                  type: varchar
+              - column:
+                  name: year
+                  type: int
+              - column:
+                  name: price
+                  type: bigint
+              - column:
+                  name: car_detail_id
+                  type: int
+
+  - changeSet:
+      id: foreign-key-car-carDetail
+      author: adem
+      changes:
+        - addForeignKeyConstraint:
+            constraintName: fk_car_car_detail
+            baseTableName: car
+            baseColumnNames: car_detail_id
+            referencedTableName: car_detail
+            referencedColumnNames: id
+
+  - changeSet:
+      id: foreign-key-car
+      author: adem
+      changes:
+        - createTable:
+            tableName: car_advantage
+            columns:
+              - column:
+                  name: car_id
+                  type: int
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: advantage_id
+                  type: int
+                  constraints:
+                    nullable: false
+
+        - addForeignKeyConstraint:
+            baseTableName: car_advantage
+            baseColumnNames: car_id
+            constraintName: fk_car_advantage_car
+            referencedTableName: car
+            referencedColumnNames: id
+
+        - addForeignKeyConstraint:
+            baseTableName: car_advantage
+            baseColumnNames: advantage_id
+            constraintName: fk_car_advantage_advantage
+            referencedTableName: advantage
+            referencedColumnNames: id
+

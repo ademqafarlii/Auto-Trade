@@ -1,0 +1,17 @@
+databaseChangeLog:
+
+
+  ## CREATE TABLE
+  - include:
+      file: db/changelog/create-table/create-table-advantage.yaml
+  - include:
+      file: db/changelog/create-table/create-table-carDetail.yaml
+  - include:
+      file: db/changelog/create-table/create-table-car.yaml
+  - include:
+      file: db/changelog/create-table/create-table-user.yaml
+  - include:
+      file: db/changelog/create-table/create-table-announcement.yaml
+
+
+

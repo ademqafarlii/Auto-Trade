@@ -1,0 +1,64 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2024-09-08-02
+      author: adem
+      changes:
+        - createTable:
+            tableName: announcement
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: announcement_name
+                  type: varchar
+              - column:
+                  name: create_date
+                  type: timestamp
+              - column:
+                  name: update_date
+                  type: timestamp
+              - column:
+                  name: expire_date
+                  type: timestamp
+              - column:
+                  name: view_count
+                  type: bigint
+              - column:
+                  name: description
+                  type: varchar
+              - column:
+                  name: status
+                  type: varchar
+              - column:
+                  name: car_id
+                  type: int
+                  constraints:
+                    foreignKeyName: fk_announcement_car
+              - column:
+                  name: user_id
+                  type: int
+                  constraints:
+                    foreignKeyName: fk_announcement_user
+
+  - changeSet:
+      author: adem
+      id: foreign-key-announcement
+      changes:
+       - addForeignKeyConstraint:
+           baseTableName: announcement
+           baseColumnNames: user_id
+           constraintName: fk_announcement_user
+           referencedColumnNames: id
+           referencedTableName: users
+       - addForeignKeyConstraint:
+           baseTableName: announcement
+           baseColumnNames: car_id
+           constraintName: fk_announcement_car
+           referencedColumnNames: id
+           referencedTableName: car
+
+

@@ -1,0 +1,45 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2024-09-08-05
+      author: adem
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar
+              - column:
+                  name: surname
+                  type: varchar
+              - column:
+                  name: email
+                  type: varchar
+              - column:
+                  name: password
+                  type: varchar
+              - column:
+                  name: phone_number
+                  type: varchar
+
+  - changeSet:
+      id: 2024-09-08-creating-user_announcements
+      author: adem
+      changes:
+        - createTable:
+            tableName: users_announcements
+            columns:
+              - column:
+                  name: user_id
+                  type: int
+              - column:
+                  name: announcements_id
+                  type: int
+

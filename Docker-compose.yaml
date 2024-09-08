@@ -1,0 +1,20 @@
+services:
+  postgres:
+    container_name: auto-trade
+    image: postgres:15
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=auto_trade
+    volumes:
+      - postgres-db-volume:/var/lib/postgresql/data
+    ports:
+      - "5434:5432"
+
+volumes:
+  postgres-db-volume:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./data

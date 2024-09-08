@@ -1,0 +1,49 @@
+databaseChangeLog:
+  - changeSet:
+      author: adem
+      id: 2024-09-08-04
+      changes:
+        - createTable:
+            tableName: car_detail
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: mileage
+                  type: bigint
+              - column:
+                  name: transmission
+                  type: varchar
+              - column:
+                  name: is_new
+                  type: boolean
+              - column:
+                  name: van_type
+                  type: varchar
+              - column:
+                  name: color
+                  type: varchar
+              - column:
+                  name: situation
+                  type: varchar
+              - column:
+                  name: owner_count
+                  type: int
+              - column:
+                  name: vin_code
+                  type: varchar
+                  constraints:
+                    unique: true
+              - column:
+                  name: description
+                  type: varchar
+              - column:
+                  name: fuel_type
+                  type: varchar
+              - column:
+                  name: engine_power
+                  type: bigint

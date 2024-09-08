@@ -1,0 +1,36 @@
+databaseChangeLog:
+  - changeSet:
+      author: adem
+      id: 2024-09-08-01
+      changes:
+        - createTable:
+            tableName: advantage
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: abs
+                  type: boolean
+              - column:
+                  name: luke
+                  type: boolean
+              - column:
+                  name: rain_sensor
+                  type: boolean
+              - column:
+                  name: central_lock
+                  type: boolean
+              - column:
+                  name: parking_sensors
+                  type: boolean
+              - column:
+                  name: air_conditioner
+                  type: boolean
+              - column:
+                  name: heated_seats
+                  type: boolean
+
