@@ -1,10 +1,8 @@
 package org.adem.autotrade.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
@@ -28,7 +26,7 @@ public class Car {
     @JoinColumn(name = "car_detail_id")
     private CarDetail carDetail;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "car_advantage",
             joinColumns = @JoinColumn(name = "car_id"),
@@ -37,5 +35,7 @@ public class Car {
     private List<Advantage> advantage;
 
     @OneToOne(mappedBy = "car")
+    @JsonIgnore
+    @ToString.Exclude
     private Announcement announcement;
 }

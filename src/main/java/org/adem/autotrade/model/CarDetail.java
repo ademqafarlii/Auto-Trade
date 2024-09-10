@@ -1,10 +1,8 @@
 package org.adem.autotrade.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.adem.autotrade.enums.Fuel;
 import org.adem.autotrade.enums.Situation;
 import org.adem.autotrade.enums.Transmission;
@@ -43,5 +41,7 @@ public class CarDetail {
     private Long enginePower;
 
     @OneToOne(mappedBy = "carDetail")
+    @JsonIgnore
+    @ToString.Exclude
     private Car car;
 }

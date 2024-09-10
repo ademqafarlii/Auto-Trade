@@ -1,10 +1,8 @@
 package org.adem.autotrade.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.adem.autotrade.enums.Status;
 
 import java.time.LocalDateTime;

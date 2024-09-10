@@ -27,7 +27,6 @@ databaseChangeLog:
               - column:
                   name: car_detail_id
                   type: int
-
   - changeSet:
       id: foreign-key-car-carDetail
       author: adem

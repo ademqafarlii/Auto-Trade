@@ -1,10 +1,8 @@
 package org.adem.autotrade.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Set;
 
@@ -27,5 +25,7 @@ public class User {
     private String phoneNumber;
 
     @OneToMany(fetch = FetchType.LAZY)
+    @JsonIgnore
+    @EqualsAndHashCode.Exclude
     private Set<Announcement> announcements;
 }

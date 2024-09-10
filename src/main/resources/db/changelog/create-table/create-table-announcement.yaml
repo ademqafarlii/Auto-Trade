@@ -34,15 +34,15 @@ databaseChangeLog:
                   name: status
                   type: varchar
               - column:
-                  name: car_id
-                  type: int
-                  constraints:
-                    foreignKeyName: fk_announcement_car
-              - column:
                   name: user_id
                   type: int
                   constraints:
                     foreignKeyName: fk_announcement_user
+              - column:
+                  name: car_id
+                  type: int
+                  constraints:
+                    foreignKeyName: fk_announcement_car
 
   - changeSet:
       author: adem
