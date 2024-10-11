@@ -1,8 +1,13 @@
 package org.adem.autotrade.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.adem.autotrade.model.CarDetail;
+import org.adem.autotrade.dto.request.CarDetailRequestDto;
+import org.adem.autotrade.dto.response.CarDetailResponseDto;
+import org.adem.autotrade.enums.Transmission;
 import org.adem.autotrade.service.CarDetailService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,31 +23,31 @@ public class CarDetailController {
 
     @PostMapping("/add-car-details")
     @ResponseStatus(HttpStatus.CREATED)
-    public void addCarDetails(@RequestBody CarDetail carDetail) {
+    public void addCarDetails(@RequestBody CarDetailRequestDto carDetail) {
         carDetailService.addCarDetails(carDetail);
     }
 
     @PutMapping("/update-car-details-by-car-id/{carId}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void updateCarDetailsByCarId(@PathVariable("carId") Integer id,@RequestBody CarDetail carDetail) {
+    public void updateCarDetailsByCarId(@PathVariable("carId") Integer id, @RequestBody CarDetailRequestDto carDetail) {
         carDetailService.updateCarDetailsByCarId(id, carDetail);
     }
 
     @PatchMapping("/partial-update-car-details-by-car-id/{carId}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void partialUpdateCarDetailsByCarId(@PathVariable("carId") Integer id,@RequestBody CarDetail carDetail) {
+    public void partialUpdateCarDetailsByCarId(@PathVariable("carId") Integer id, @RequestBody CarDetailRequestDto carDetail) {
         carDetailService.updateCarDetailsByCarId(id, carDetail);
     }
 
     @GetMapping("/get-all-car-details")
     @ResponseStatus(HttpStatus.OK)
-    public List<CarDetail> getAllCarDetails() {
-        return carDetailService.getAllCarDetails();
+    public Page<CarDetailResponseDto> getAllCarDetails(@PageableDefault(value = 12) Pageable pageable) {
+        return carDetailService.getAllCarDetails(pageable);
     }
 
     @GetMapping("/get-car-details-by-car-id/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public CarDetail getCarDetailsByCarId(@PathVariable Integer id) {
+    public CarDetailResponseDto getCarDetailsByCarId(@PathVariable Integer id) {
         return carDetailService.getCarDetailsByCarId(id);
     }
 
@@ -50,5 +55,16 @@ public class CarDetailController {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void deleteCarDetailsByCarId(@PathVariable Integer id) {
         carDetailService.deleteCarDetailsByCarId(id);
+    }
+
+    @GetMapping("/find-by-spec")
+    @ResponseStatus(HttpStatus.OK)
+    public Page<CarDetailResponseDto> findBySpecification(@RequestParam(required = false) Long mileage,
+                                                          @RequestParam(required = false) Transmission transmission,
+                                                          @RequestBody(required = false) Boolean isNew,
+                                                          @RequestBody(required = false) String vanType,
+                                                          @RequestBody(required = false) String color,
+                                                          @PageableDefault(value = 12) Pageable pageable) {
+        return carDetailService.findBySpecification(mileage, transmission, isNew, vanType, color, pageable);
     }
 }

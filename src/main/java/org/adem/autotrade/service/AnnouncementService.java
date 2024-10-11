@@ -1,20 +1,25 @@
 package org.adem.autotrade.service;
 
-import org.adem.autotrade.model.Announcement;
+import org.adem.autotrade.dto.request.AnnouncementRequestDto;
+import org.adem.autotrade.dto.response.AnnouncementResponseDto;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
-import java.util.List;
+import java.time.LocalDateTime;
 
 public interface AnnouncementService {
 
-    void addAnnouncement(Announcement announcement);
+    void addAnnouncement(AnnouncementRequestDto announcementRequestDto);
 
-    void updateAnnouncementByID(Integer id,Announcement announcement);
+    void updateAnnouncementByID(Integer id,AnnouncementRequestDto announcementRequestDto);
 
-    List<Announcement> getAllAnnouncements();
+    Page<AnnouncementResponseDto> getAllAnnouncements(Pageable pageable);
 
-    Announcement getAnnouncementByID(Integer id);
+    AnnouncementResponseDto getAnnouncementByID(Integer id);
 
-    Announcement getAnnouncementByCarID(Integer carId);
+    AnnouncementResponseDto getAnnouncementByCarID(Integer carId);
 
     void deleteAnnouncementByID(Integer id);
+
+    Page<AnnouncementResponseDto> findBySpecification(String name, LocalDateTime createDate,Pageable pageable);
 }

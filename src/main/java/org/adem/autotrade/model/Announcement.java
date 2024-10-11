@@ -1,6 +1,5 @@
 package org.adem.autotrade.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.adem.autotrade.enums.Status;
@@ -12,6 +11,10 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@NamedEntityGraph(name = "announcement-graph",
+        attributeNodes = {
+            @NamedAttributeNode("user")
+        })
 public class Announcement {
 
     @Id

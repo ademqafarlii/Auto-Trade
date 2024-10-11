@@ -1,18 +1,28 @@
 package org.adem.autotrade.service;
 
-import org.adem.autotrade.model.CarDetail;
+import org.adem.autotrade.dto.request.CarDetailRequestDto;
+import org.adem.autotrade.dto.response.CarDetailResponseDto;
+import org.adem.autotrade.enums.Transmission;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
-import java.util.List;
 
 public interface CarDetailService {
 
-    void addCarDetails(CarDetail carDetail);
+    void addCarDetails(CarDetailRequestDto carDetailRequestDto);
 
-    void updateCarDetailsByCarId(Integer id, CarDetail carDetail);
+    void updateCarDetailsByCarId(Integer id, CarDetailRequestDto carDetailRequestDto);
 
-    List<CarDetail> getAllCarDetails();
+    Page<CarDetailResponseDto> getAllCarDetails(Pageable pageable);
 
-    CarDetail getCarDetailsByCarId(Integer id);
+    CarDetailResponseDto getCarDetailsByCarId(Integer id);
 
     void deleteCarDetailsByCarId(Integer id);
+
+    Page<CarDetailResponseDto> findBySpecification(Long mileage,
+                                                   Transmission transmission,
+                                                   Boolean isNew,
+                                                   String vanType,
+                                                   String color,
+                                                   Pageable pageable);
 }

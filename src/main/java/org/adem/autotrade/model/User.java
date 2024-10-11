@@ -12,6 +12,10 @@ import java.util.Set;
 @NoArgsConstructor
 @Builder
 @Data
+@NamedEntityGraph(name = "user-graph",
+        attributeNodes = {
+                @NamedAttributeNode("announcements")
+        })
 public class User {
 
     @Id

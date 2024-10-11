@@ -1,21 +1,15 @@
-package org.adem.autotrade.model;
+package org.adem.autotrade.dto.request;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Data
-public class Advantage {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+public class AdvantageRequestDto {
 
     private Boolean abs;
     private Boolean luke;

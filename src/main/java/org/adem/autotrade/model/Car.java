@@ -11,6 +11,10 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Data
+@NamedEntityGraph(name = "car-graph",
+        attributeNodes = {
+                @NamedAttributeNode("advantage")
+        })
 public class Car {
 
     @Id
@@ -22,11 +26,11 @@ public class Car {
     private Integer year;
     private Long price;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne
     @JoinColumn(name = "car_detail_id")
     private CarDetail carDetail;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinTable(
             name = "car_advantage",
             joinColumns = @JoinColumn(name = "car_id"),
