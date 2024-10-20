@@ -1,5 +1,6 @@
 package org.adem.autotrade.dto.request;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.adem.autotrade.dto.response.CarResponseDto;
 import org.adem.autotrade.enums.Fuel;
@@ -16,6 +17,7 @@ public class CarDetailRequestDto {
 
     private Transmission transmission;
 
+    @NotNull
     private Boolean isNew;
 
     private String vanType;

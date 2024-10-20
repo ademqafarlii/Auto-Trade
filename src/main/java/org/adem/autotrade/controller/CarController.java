@@ -1,5 +1,6 @@
 package org.adem.autotrade.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.adem.autotrade.dto.request.CarRequestDto;
 import org.adem.autotrade.dto.response.CarResponseDto;
@@ -18,19 +19,19 @@ public class CarController {
 
     @PostMapping("/add-car")
     @ResponseStatus(HttpStatus.CREATED)
-    public void addCar(@RequestBody CarRequestDto car) {
+    public void addCar(@RequestBody @Valid CarRequestDto car) {
         carService.addCar(car);
     }
 
     @PutMapping("/update-car-by-id/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void updateCarByID(@PathVariable Integer id, @RequestBody CarRequestDto car) {
+    public void updateCarByID(@PathVariable Integer id, @RequestBody @Valid CarRequestDto car) {
         carService.updateCarByID(id, car);
     }
 
     @PatchMapping("/partial-update-car-by-id/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void partialUpdateCarByID(@PathVariable Integer id, @RequestBody CarRequestDto car) {
+    public void partialUpdateCarByID(@PathVariable Integer id, @RequestBody @Valid CarRequestDto car) {
         carService.updateCarByID(id, car);
     }
 
@@ -62,8 +63,8 @@ public class CarController {
     @GetMapping("/find-by-spec")
     @ResponseStatus(HttpStatus.OK)
     Page<CarResponseDto> findBySpecification(@RequestParam(required = false) String brand,
-                                             @RequestBody(required = false) String model,
-                                             @RequestBody(required = false) Integer year,
+                                             @RequestParam(required = false) String model,
+                                             @RequestParam(required = false) Integer year,
                                              @PageableDefault(value = 12) Pageable pageable) {
         return carService.findBySpecification(brand, model, year, pageable);
     }

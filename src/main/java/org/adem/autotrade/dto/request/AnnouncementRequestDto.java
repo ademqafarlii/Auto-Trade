@@ -1,5 +1,7 @@
 package org.adem.autotrade.dto.request;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,6 +17,7 @@ import java.time.LocalDateTime;
 @Builder
 public class AnnouncementRequestDto {
 
+    @NotBlank(message = "announcement name cannot be blank")
     private String announcementName;
     private LocalDateTime createDate;
     private LocalDateTime updateDate;
@@ -22,6 +25,7 @@ public class AnnouncementRequestDto {
     private Long viewCount;
     private String description;
 
+    @NotNull
     private Status status;
 
     private CarResponseDto car;

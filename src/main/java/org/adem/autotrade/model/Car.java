@@ -13,7 +13,7 @@ import java.util.List;
 @Data
 @NamedEntityGraph(name = "car-graph",
         attributeNodes = {
-                @NamedAttributeNode("advantage")
+                @NamedAttributeNode("advantage"),
         })
 public class Car {
 
@@ -30,7 +30,7 @@ public class Car {
     @JoinColumn(name = "car_detail_id")
     private CarDetail carDetail;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "car_advantage",
             joinColumns = @JoinColumn(name = "car_id"),

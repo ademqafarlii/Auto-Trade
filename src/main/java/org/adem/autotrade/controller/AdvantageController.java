@@ -1,11 +1,13 @@
 package org.adem.autotrade.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.adem.autotrade.dto.request.AdvantageRequestDto;
 import org.adem.autotrade.dto.response.AdvantageResponseDto;
 import org.adem.autotrade.service.AdvantageService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,19 +21,19 @@ public class AdvantageController {
 
     @PostMapping("/add-advantage")
     @ResponseStatus(HttpStatus.CREATED)
-    public void addAdvantage(@RequestParam AdvantageRequestDto advantage) {
+    public void addAdvantage(@RequestParam @Valid AdvantageRequestDto advantage) {
         advantageService.addAdvantage(advantage);
     }
 
     @PutMapping("/update-advantages-by-car-id")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void updateAdvantagesByCarID(@RequestParam Integer carID, @RequestBody AdvantageRequestDto advantage) {
+    public void updateAdvantagesByCarID(@RequestParam Integer carID, @RequestBody @Valid AdvantageRequestDto advantage) {
         advantageService.updateAdvantagesByCarID(carID, advantage);
     }
 
     @PatchMapping("/partial-update-advantages-by-car-id")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void partialUpdateAdvantagesByCarID(@RequestParam Integer carID, @RequestBody AdvantageRequestDto advantage) {
+    public void partialUpdateAdvantagesByCarID(@RequestParam Integer carID, @RequestBody @Valid AdvantageRequestDto advantage) {
         advantageService.updateAdvantagesByCarID(carID, advantage);
     }
 
@@ -56,7 +58,7 @@ public class AdvantageController {
                                                           @RequestParam(required = false) Boolean parkingSensor,
                                                           @RequestParam(required = false) Boolean airConditioner,
                                                           @RequestParam(required = false) Boolean heatedSeats,
-                                                          Pageable pageable) {
+                                                          @PageableDefault(value = 12) Pageable pageable) {
 
         return advantageService.findBySpecification(
                 abs, luke, rainSensor, centralLock, parkingSensor, airConditioner, heatedSeats, pageable);

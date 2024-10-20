@@ -1,5 +1,6 @@
 package org.adem.autotrade.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.adem.autotrade.dto.request.CarDetailRequestDto;
 import org.adem.autotrade.dto.response.CarDetailResponseDto;
@@ -23,19 +24,19 @@ public class CarDetailController {
 
     @PostMapping("/add-car-details")
     @ResponseStatus(HttpStatus.CREATED)
-    public void addCarDetails(@RequestBody CarDetailRequestDto carDetail) {
+    public void addCarDetails(@RequestBody @Valid CarDetailRequestDto carDetail) {
         carDetailService.addCarDetails(carDetail);
     }
 
     @PutMapping("/update-car-details-by-car-id/{carId}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void updateCarDetailsByCarId(@PathVariable("carId") Integer id, @RequestBody CarDetailRequestDto carDetail) {
+    public void updateCarDetailsByCarId(@PathVariable("carId") Integer id, @RequestBody @Valid CarDetailRequestDto carDetail) {
         carDetailService.updateCarDetailsByCarId(id, carDetail);
     }
 
     @PatchMapping("/partial-update-car-details-by-car-id/{carId}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void partialUpdateCarDetailsByCarId(@PathVariable("carId") Integer id, @RequestBody CarDetailRequestDto carDetail) {
+    public void partialUpdateCarDetailsByCarId(@PathVariable("carId") Integer id, @RequestBody @Valid CarDetailRequestDto carDetail) {
         carDetailService.updateCarDetailsByCarId(id, carDetail);
     }
 
@@ -61,9 +62,9 @@ public class CarDetailController {
     @ResponseStatus(HttpStatus.OK)
     public Page<CarDetailResponseDto> findBySpecification(@RequestParam(required = false) Long mileage,
                                                           @RequestParam(required = false) Transmission transmission,
-                                                          @RequestBody(required = false) Boolean isNew,
-                                                          @RequestBody(required = false) String vanType,
-                                                          @RequestBody(required = false) String color,
+                                                          @RequestParam(required = false) Boolean isNew,
+                                                          @RequestParam(required = false) String vanType,
+                                                          @RequestParam(required = false) String color,
                                                           @PageableDefault(value = 12) Pageable pageable) {
         return carDetailService.findBySpecification(mileage, transmission, isNew, vanType, color, pageable);
     }

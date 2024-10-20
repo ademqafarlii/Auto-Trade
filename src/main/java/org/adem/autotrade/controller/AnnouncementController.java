@@ -1,5 +1,6 @@
 package org.adem.autotrade.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.adem.autotrade.dto.request.AnnouncementRequestDto;
 import org.adem.autotrade.dto.response.AnnouncementResponseDto;
@@ -23,19 +24,19 @@ public class AnnouncementController {
 
     @PostMapping("/add-announcement")
     @ResponseStatus(HttpStatus.CREATED)
-    public void addAnnouncement(@RequestBody AnnouncementRequestDto announcement) {
+    public void addAnnouncement(@RequestBody @Valid AnnouncementRequestDto announcement) {
         announcementService.addAnnouncement(announcement);
     }
 
     @PutMapping("/update-announcement-by-id/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void updateAnnouncementByID(@PathVariable Integer id, @RequestBody AnnouncementRequestDto announcement) {
+    public void updateAnnouncementByID(@PathVariable Integer id, @RequestBody @Valid AnnouncementRequestDto announcement) {
         announcementService.updateAnnouncementByID(id, announcement);
     }
 
     @PutMapping("/partial-update-announcement-by-id/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void partialUpdateAnnouncementByID(@PathVariable Integer id, @RequestBody AnnouncementRequestDto announcement) {
+    public void partialUpdateAnnouncementByID(@PathVariable Integer id, @RequestBody @Valid AnnouncementRequestDto announcement) {
         announcementService.updateAnnouncementByID(id, announcement);
     }
 

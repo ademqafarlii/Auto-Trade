@@ -1,5 +1,6 @@
 package org.adem.autotrade.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.adem.autotrade.dto.request.UserRequestDto;
 import org.adem.autotrade.dto.response.AnnouncementResponseDto;
@@ -21,19 +22,19 @@ public class UserController {
 
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
-    public void register(@RequestBody UserRequestDto user) {
+    public void register(@RequestBody @Valid UserRequestDto user) {
         userService.register(user);
     }
 
     @PutMapping("/update-credentials")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void updateCredentials(@RequestParam String email, @RequestParam String password,@RequestBody UserRequestDto user) {
+    public void updateCredentials(@RequestParam String email, @RequestParam String password,@RequestBody @Valid UserRequestDto user) {
         userService.updateCredentials(email, password, user);
     }
 
     @PatchMapping("/partial-update-credentials")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void partialUpdateCredentials(@RequestParam String email, @RequestParam String password,@RequestBody UserRequestDto user) {
+    public void partialUpdateCredentials(@RequestParam String email, @RequestParam String password,@RequestBody @Valid UserRequestDto user) {
         userService.updateCredentials(email, password, user);
     }
 
