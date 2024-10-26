@@ -83,9 +83,9 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public Page<CarResponseDto> getCarsByModel(String model, Pageable pageable){
-        Page<Car> carPage = carRepository.getCarsByModel(model,pageable);
-        if (carPage.isEmpty()){
+    public Page<CarResponseDto> getCarsByModel(String model, Pageable pageable) {
+        Page<Car> carPage = carRepository.getCarsByModel(model, pageable);
+        if (carPage.isEmpty()) {
             throw new CarNotFoundException("Car not found");
         }
         return carPage.map(carMapper::toCarResponse);
@@ -105,9 +105,9 @@ public class CarServiceImpl implements CarService {
     public Page<CarResponseDto> findBySpecification(String brand,
                                                     String model,
                                                     Integer year,
-                                                    Pageable pageable){
+                                                    Pageable pageable) {
 
-        Specification<Car> specification = null;
+        Specification<Car> specification;
 
         specification = (root, query, criteriaBuilder) -> {
             List<Predicate> predicateList = new ArrayList<>();

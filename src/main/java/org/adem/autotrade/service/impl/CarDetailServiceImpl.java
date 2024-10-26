@@ -87,7 +87,7 @@ public class CarDetailServiceImpl implements CarDetailService {
                                                           String vanType,
                                                           String color,
                                                           Pageable pageable) {
-        Specification<CarDetail> specification = null;
+        Specification<CarDetail> specification;
 
         specification = (root, query, criteriaBuilder) -> {
             List<Predicate> predicateList = new ArrayList<>();

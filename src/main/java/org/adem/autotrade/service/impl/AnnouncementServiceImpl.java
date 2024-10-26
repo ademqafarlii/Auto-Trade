@@ -98,7 +98,7 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 
     @Override
     public Page<AnnouncementResponseDto> findBySpecification(String name, LocalDateTime createDate, Pageable pageable) {
-        Specification<Announcement> specification = null;
+        Specification<Announcement> specification;
 
         specification = (root, query, criteriaBuilder) -> {
             List<Predicate> predicateList = new ArrayList<>();

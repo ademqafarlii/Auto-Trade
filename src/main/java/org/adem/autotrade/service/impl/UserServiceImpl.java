@@ -88,7 +88,7 @@ public class UserServiceImpl implements UserService {
                                                      String email,
                                                      String phoneNumber,
                                                      Pageable pageable) {
-        Specification<User> specification = null;
+        Specification<User> specification;
 
         specification = (root, query, criteriaBuilder) -> {
             List<Predicate> predicateList = new ArrayList<>();

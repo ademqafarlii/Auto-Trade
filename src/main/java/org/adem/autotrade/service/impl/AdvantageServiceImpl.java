@@ -72,14 +72,14 @@ public class AdvantageServiceImpl implements AdvantageService {
 
     @Override
     public Page<AdvantageResponseDto> findBySpecification(Boolean abs,
-                                               Boolean luke,
-                                               Boolean rainSensor,
-                                               Boolean centralLock,
-                                               Boolean parkingSensor,
-                                               Boolean airConditioner,
-                                               Boolean heatedSeats,
-                                               Pageable pageable) {
-        Specification<Advantage> specification = null;
+                                                          Boolean luke,
+                                                          Boolean rainSensor,
+                                                          Boolean centralLock,
+                                                          Boolean parkingSensor,
+                                                          Boolean airConditioner,
+                                                          Boolean heatedSeats,
+                                                          Pageable pageable) {
+        Specification<Advantage> specification;
 
         specification = (root, query, criteriaBuilder) -> {
             List<Predicate> predicateList = new ArrayList<>();
@@ -111,6 +111,6 @@ public class AdvantageServiceImpl implements AdvantageService {
 
             return query.getRestriction();
         };
-        return advantageRepository.findAll(specification,pageable).map(advantageMapper::toAdvantageResponse);
+        return advantageRepository.findAll(specification, pageable).map(advantageMapper::toAdvantageResponse);
     }
 }
