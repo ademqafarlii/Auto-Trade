@@ -17,3 +17,6 @@ spring:
 server:
   servlet:
     context-path: /v1/auto-trade
+
+jwt:
+  secret-key: ${JWT_SECRET_KEY:QWRlbVFhZmFybGlpMTIzQXV0b1RyYWRlU2VjcmV0S2V5}

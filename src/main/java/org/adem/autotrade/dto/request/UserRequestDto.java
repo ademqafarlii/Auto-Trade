@@ -3,12 +3,13 @@ package org.adem.autotrade.dto.request;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.adem.autotrade.dto.response.AnnouncementResponseDto;
 
-import java.util.Set;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -29,5 +30,6 @@ public class UserRequestDto {
     @NotBlank(message = "phone number cannot be blank")
     private String phoneNumber;
 
-    private Set<AnnouncementResponseDto> announcements;
+    private List<AnnouncementResponseDto> announcements;
+
 }

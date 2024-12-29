@@ -3,7 +3,7 @@ package org.adem.autotrade.dto.response;
 
 import lombok.*;
 
-import java.util.Set;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -17,5 +17,5 @@ public class UserResponseDto {
     private String password;
     private String phoneNumber;
 
-    private Set<AnnouncementResponseDto> announcements;
+    private List<AnnouncementResponseDto> announcements;
 }

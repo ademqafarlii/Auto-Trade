@@ -39,7 +39,7 @@ public class AdvantageController {
 
     @GetMapping("/get-all-advantages-by-car-id/{id}")
     @ResponseStatus(HttpStatus.OK)
-    Page<AdvantageResponseDto> getAllAdvantagesByCarId(@PathVariable Integer id, Pageable pageable) {
+    public Page<AdvantageResponseDto> getAllAdvantagesByCarId(@PathVariable Integer id, Pageable pageable) {
         return advantageService.getAllAdvantagesByCarId(id, pageable);
     }
 

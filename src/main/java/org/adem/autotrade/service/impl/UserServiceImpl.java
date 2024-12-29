@@ -6,7 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.adem.autotrade.dto.request.UserRequestDto;
 import org.adem.autotrade.dto.response.AnnouncementResponseDto;
 import org.adem.autotrade.dto.response.UserResponseDto;
-import org.adem.autotrade.exception.EmailAlreadyInUseException;
 import org.adem.autotrade.exception.InvalidCredentialsException;
 import org.adem.autotrade.exception.UserNotFoundException;
 import org.adem.autotrade.mapper.AnnouncementMapper;
@@ -30,20 +29,6 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
     private final AnnouncementMapper announcementMapper;
-
-
-    @Override
-    public void register(UserRequestDto user) {
-        Optional<User> userWithEmail = userRepository.findByEmail(user.getEmail());
-        if (userWithEmail.isPresent()) {
-            throw new EmailAlreadyInUseException("Email is already in use");
-        }
-        User user1 = userMapper.toUserEntity(user);
-        userRepository.save(user1);
-        log.info("User registered successfully with id:{}", user1.getId());
-
-    }
-
     @Override
     public void updateCredentials(String email, String password, UserRequestDto user) {
         Optional<User> existingUser = userRepository.findByEmailAndPassword(email, password);
@@ -62,16 +47,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Set<AnnouncementResponseDto> getAllAnnouncementsOfUser(Integer id) {
+    public List<AnnouncementResponseDto> getAllAnnouncementsOfUser(Integer id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException("User not found with this id"));
 
         return user.getAnnouncements()
                 .stream()
                 .map(announcementMapper::toAnnouncementResponse)
-                .collect(Collectors.toSet());
+                .collect(Collectors.toList());
     }
 
+    // addeeeeeeeeeemmmmmmmmmmmmmmmmmmmmm
     @Override
     public void deleteAccount(String email, String password) {
         Optional<User> user = userRepository.findByEmailAndPassword(email, password);

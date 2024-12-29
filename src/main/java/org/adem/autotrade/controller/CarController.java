@@ -62,7 +62,7 @@ public class CarController {
 
     @GetMapping("/find-by-spec")
     @ResponseStatus(HttpStatus.OK)
-    Page<CarResponseDto> findBySpecification(@RequestParam(required = false) String brand,
+    public Page<CarResponseDto> findBySpecification(@RequestParam(required = false) String brand,
                                              @RequestParam(required = false) String model,
                                              @RequestParam(required = false) Integer year,
                                              @PageableDefault(value = 12) Pageable pageable) {

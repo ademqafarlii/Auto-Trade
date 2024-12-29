@@ -124,6 +124,26 @@ public class GlobalExceptionHandler {
                 .body(errorResponse);
     }
 
+
+    @ExceptionHandler(AuthorizationException.class)
+    public ResponseEntity<ErrorResponse> handleAuthorizationException(AuthorizationException e,
+                                                                      WebRequest webRequest) {
+
+        Map<String, String> errors = new HashMap<>();
+        errors.put("message", e.getMessage());
+
+        log.error("Authorization token not found", e);
+        ErrorResponse errorResponse = ErrorResponse.builder()
+                .message(errors)
+                .path(webRequest.getHeader("Content-Type"))
+                .statusCode(HttpStatus.FORBIDDEN.value())
+                .timestamp(LocalDate.now())
+                .build();
+        return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                .body(errorResponse);
+    }
+
+
     @ExceptionHandler(NoSuchElementException.class)
     public ResponseEntity<ErrorResponse> handleNoSuchElementException(NoSuchElementException e,
                                                                       WebRequest webRequest) {

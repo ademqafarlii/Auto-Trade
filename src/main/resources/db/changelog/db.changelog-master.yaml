@@ -13,5 +13,9 @@ databaseChangeLog:
   - include:
       file: db/changelog/create-table/create-table-announcement.yaml
 
+  ## ALTER TABLE
+  - include:
+      file: db/changelog/alter-table/alter-table-user.yaml
+
 
 

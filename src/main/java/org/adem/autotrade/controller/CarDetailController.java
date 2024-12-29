@@ -10,9 +10,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/car-detail")
@@ -42,6 +42,7 @@ public class CarDetailController {
 
     @GetMapping("/get-all-car-details")
     @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("hasAnyRole('ADMIN')")
     public Page<CarDetailResponseDto> getAllCarDetails(@PageableDefault(value = 12) Pageable pageable) {
         return carDetailService.getAllCarDetails(pageable);
     }

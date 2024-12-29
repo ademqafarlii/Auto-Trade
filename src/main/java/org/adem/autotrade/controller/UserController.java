@@ -12,19 +12,13 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Set;
+import java.util.List;
 
 @RestController
 @RequestMapping("/user")
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
-
-    @PostMapping("/register")
-    @ResponseStatus(HttpStatus.CREATED)
-    public void register(@RequestBody @Valid UserRequestDto user) {
-        userService.register(user);
-    }
 
     @PutMapping("/update-credentials")
     @ResponseStatus(HttpStatus.ACCEPTED)
@@ -40,7 +34,7 @@ public class UserController {
 
     @GetMapping("/get-all-announcements-of-user-by-id/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Set<AnnouncementResponseDto> getAllAnnouncementsOfUser(@PathVariable Integer id) {
+    public List<AnnouncementResponseDto> getAllAnnouncementsOfUser(@PathVariable Integer id) {
         return userService.getAllAnnouncementsOfUser(id);
     }
 
