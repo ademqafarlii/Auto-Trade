@@ -34,15 +34,13 @@ public class SecurityConfig {
                 .cors(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**").permitAll()
-                        .requestMatchers(GET,"/announcement/**").permitAll()
                         .anyRequest()
                         .authenticated())
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .authenticationProvider(authenticationProvider)
-                .exceptionHandling(Customizer.withDefaults())
-                .httpBasic(basic->basic.authenticationEntryPoint(authenticationEntryPoint));
+                .exceptionHandling(exc->exc.authenticationEntryPoint(authenticationEntryPoint));
         return http.build();
     }
 
