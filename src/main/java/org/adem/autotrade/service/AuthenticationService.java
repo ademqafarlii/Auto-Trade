@@ -6,7 +6,7 @@ import org.adem.autotrade.dto.auth.RegisterRequest;
 
 public interface AuthenticationService {
 
-    AuthenticationResponse register(RegisterRequest registerRequest);
+    void register(RegisterRequest registerRequest);
 
     AuthenticationResponse authenticate(AuthenticationRequest authenticationRequest);
 }
